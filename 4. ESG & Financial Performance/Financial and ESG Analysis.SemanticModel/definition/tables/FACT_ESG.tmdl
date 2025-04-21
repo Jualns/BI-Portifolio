@@ -1,0 +1,112 @@
+table FACT_ESG
+	lineageTag: 6ab41344-d50e-4cad-a71f-dfebf56a7dba
+
+	column CompanyID
+		dataType: string
+		lineageTag: f8c9592d-3b31-431f-8da2-dc5534b9c214
+		summarizeBy: none
+		sourceColumn: CompanyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: string
+		lineageTag: 6764a82e-cc15-42cd-99d0-92cc094eb4e9
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ESG Score'
+		dataType: double
+		lineageTag: 4670eedf-80e7-41ea-972f-d8f4fadb81f9
+		summarizeBy: sum
+		sourceColumn: ESG Score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Environmental Sustainability Score'
+		dataType: double
+		lineageTag: 1103d6d9-0181-40ed-b3f4-a104ed124aca
+		summarizeBy: sum
+		sourceColumn: Environmental Sustainability Score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Social Responsibility Score'
+		dataType: double
+		lineageTag: 9f799ecb-5213-48ea-8de2-343510473850
+		summarizeBy: sum
+		sourceColumn: Social Responsibility Score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Governance Quality Score'
+		dataType: double
+		lineageTag: 795ebb5a-7344-4045-8638-925e3e0aac98
+		summarizeBy: sum
+		sourceColumn: Governance Quality Score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Carbon Emissions (Tons CO₂)'
+		dataType: double
+		lineageTag: 5a90e6f6-498e-4657-8f5f-df198bfbc7d2
+		summarizeBy: sum
+		sourceColumn: Carbon Emissions (Tons CO₂)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Water Usage (m³)'
+		dataType: double
+		lineageTag: 6bf8e67d-7fa6-4b52-8a46-1d0cb6e9b6c8
+		summarizeBy: sum
+		sourceColumn: Water Usage (m³)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Energy Consumption (MWh)'
+		dataType: double
+		lineageTag: 99acfc10-f809-4381-a291-cbb8f95b5094
+		summarizeBy: sum
+		sourceColumn: Energy Consumption (MWh)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FACT_ESG = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("D:\Joao\GitHub\BI-Portifolio\4. ESG & Financial Performance\company_esg_financial_dataset.csv"),[Delimiter=",", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Cabeçalhos Promovidos","","0",Replacer.ReplaceValue,{"GrowthRate"}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Valor Substituído1",{"CompanyName", "Industry", "Region"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Removidas",{{"Revenue", Currency.Type}, {"MarketCap", Currency.Type}}, "en-US"),
+				    #"Tipo Alterado com Localidade" = Table.TransformColumnTypes(#"Tipo Alterado", {{"ProfitMargin", type number}, {"GrowthRate", type number}}, "en-US"),
+				    #"Tipo Alterado com Localidade1" = Table.TransformColumnTypes(#"Tipo Alterado com Localidade", {{"ESG_Overall", type number}, {"ESG_Environmental", type number}, {"ESG_Social", type number}, {"ESG_Governance", type number}, {"CarbonEmissions", type number}, {"WaterUsage", type number}, {"EnergyConsumption", type number}}, "en-US"),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado com Localidade1", "Profit Margin (%)", each [ProfitMargin]/100, Percentage.Type),
+				    #"Personalização Adicionada1" = Table.AddColumn(#"Personalização Adicionada", "Growth Rate (%)", each [GrowthRate]/100, Percentage.Type),
+				    #"Colunas Removidas1" = Table.RemoveColumns(#"Personalização Adicionada1",{"ProfitMargin", "GrowthRate"}),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Colunas Removidas1",{"CompanyID", "Year", "ESG_Overall", "ESG_Environmental", "ESG_Social", "ESG_Governance", "CarbonEmissions", "WaterUsage", "EnergyConsumption"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Outras Colunas Removidas",{{"ESG_Environmental", "Environmental Sustainability Score"}, {"ESG_Social", "Social Responsibility Score"}, {"ESG_Governance", "Governance Quality Score"}, {"ESG_Overall", "ESG Score"}, {"CarbonEmissions", "Carbon Emissions (Tons CO₂)"}, {"WaterUsage", "Water Usage (m³)"}, {"EnergyConsumption", "Energy Consumption (MWh)"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

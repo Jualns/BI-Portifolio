@@ -1,0 +1,53 @@
+table DIM_Company
+	lineageTag: 431a6f00-02f1-451e-8530-ae30c972898e
+
+	column CompanyID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d25fe88-c50b-495d-a14b-15655fa14dec
+		summarizeBy: none
+		sourceColumn: CompanyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyName
+		dataType: string
+		lineageTag: 1dec1fd3-cf8b-431a-839f-348e34bfa38e
+		summarizeBy: none
+		sourceColumn: CompanyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Industry Sector'
+		dataType: string
+		lineageTag: 7eb61bdc-8c39-4a68-842e-6eb6b45784a4
+		summarizeBy: none
+		sourceColumn: Industry Sector
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 8d45074a-b08c-4c61-8cd0-c3d9ad86afcc
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_Company = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("D:\Joao\GitHub\BI-Portifolio\4. ESG & Financial Performance\company_esg_financial_dataset.csv"),[Delimiter=",", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"CompanyID", Int64.Type}, {"CompanyName", type text}, {"Industry", type text}, {"Region", type text}, {"Year", Int64.Type}, {"Revenue", Int64.Type}, {"ProfitMargin", Int64.Type}, {"MarketCap", Int64.Type}, {"GrowthRate", Int64.Type}, {"ESG_Overall", Int64.Type}, {"ESG_Environmental", Int64.Type}, {"ESG_Social", Int64.Type}, {"ESG_Governance", Int64.Type}, {"CarbonEmissions", Int64.Type}, {"WaterUsage", Int64.Type}, {"EnergyConsumption", Int64.Type}}),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Tipo Alterado",{"CompanyID", "CompanyName", "Industry", "Region"}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Duplicatas Removidas",{{"Industry", "Industry Sector"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,20 @@
+relationship AutoDetected_c9df4b68-d5ae-4457-b14a-9c9b261876fe
+	fromColumn: DIM_Company.Region
+	toColumn: DIM_Region.Region
+
+relationship d9eb326b-f09c-7041-a768-bbe3b103db79
+	fromColumn: FACT_Financial.Year
+	toColumn: _Calendar.Year
+
+relationship 054510a3-ff23-37e0-3934-173a9d71a328
+	fromColumn: FACT_ESG.Year
+	toColumn: _Calendar.Year
+
+relationship ac7f2112-9d09-49cb-22a7-171c5797edd6
+	fromColumn: FACT_ESG.CompanyID
+	toColumn: DIM_Company.CompanyID
+
+relationship 539197dd-5c7a-3897-7576-a773b3a453aa
+	fromColumn: FACT_Financial.CompanyID
+	toColumn: DIM_Company.CompanyID
+

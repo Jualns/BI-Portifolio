@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 35.693061465114283,
+            "y": 0
+          },
+          "nodeIndex": "_Calendar",
+          "nodeLineageTag": "9ed7a927-3e58-4950-a9fe-ca657f433214",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 221.12268764434884,
+            "y": 366.44260781597558
+          },
+          "nodeIndex": "DIM_Company",
+          "nodeLineageTag": "431a6f00-02f1-451e-8530-ae30c972898e",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 200.99811231321962
+          },
+          "nodeIndex": "DIM_Region",
+          "nodeLineageTag": "34f07f21-5427-4018-9f5d-106a092296ac",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 577.90165105293192,
+            "y": 344.78140710491272
+          },
+          "nodeIndex": "FACT_ESG",
+          "nodeLineageTag": "6ab41344-d50e-4cad-a71f-dfebf56a7dba",
+          "size": {
+            "height": 335.24092774492112,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 579.85842242623892,
+            "y": 5.3858422426238732
+          },
+          "nodeIndex": "FACT_Financial",
+          "nodeLineageTag": "d6b564d7-51db-4718-b4a8-13dad1e12c9d",
+          "size": {
+            "height": 284.5431456635925,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 89.192590520569539,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

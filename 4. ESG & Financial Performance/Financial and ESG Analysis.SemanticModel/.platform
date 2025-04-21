@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Financial and ESG Analysis"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c7a384c9-fc22-4204-825f-e6403986e48a"
+  }
+}

@@ -1,0 +1,93 @@
+table FACT_Financial
+	lineageTag: d6b564d7-51db-4718-b4a8-13dad1e12c9d
+
+	column CompanyID
+		dataType: string
+		lineageTag: bb1257ea-d372-44c6-a1df-32676fda9bfb
+		summarizeBy: none
+		sourceColumn: CompanyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: string
+		lineageTag: ad9511c2-143e-45c7-a171-ee7f1d55a31a
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Revenue (MM)'
+		dataType: decimal
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 8d63c738-6155-4417-b3c0-594715ba2d00
+		summarizeBy: sum
+		sourceColumn: Revenue (MM)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'MarketCap (MM)'
+		dataType: decimal
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 1b4bf2ff-5bb8-450c-81d6-97452ea221ab
+		summarizeBy: sum
+		sourceColumn: MarketCap (MM)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Profit Margin (%)'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fb9a1fb0-302b-48b9-a230-95eeede63f15
+		summarizeBy: sum
+		sourceColumn: Profit Margin (%)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Growth Rate (%)'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 457a6c92-ab93-4506-a0cd-3183025044a4
+		summarizeBy: sum
+		sourceColumn: Growth Rate (%)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Profit Margin (MM $)'
+		dataType: decimal
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 97d9ae90-bc6b-475e-a4a9-143319e36d27
+		summarizeBy: sum
+		sourceColumn: Profit Margin (MM $)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition FACT_Financial = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("D:\Joao\GitHub\BI-Portifolio\4. ESG & Financial Performance\company_esg_financial_dataset.csv"),[Delimiter=",", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Cabeçalhos Promovidos","","0",Replacer.ReplaceValue,{"GrowthRate"}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Valor Substituído1",{"CompanyName", "Industry", "Region"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Removidas",{{"Revenue", Currency.Type}, {"MarketCap", Currency.Type}}, "en-US"),
+				    #"Tipo Alterado com Localidade" = Table.TransformColumnTypes(#"Tipo Alterado", {{"ProfitMargin", type number}, {"GrowthRate", type number}}, "en-US"),
+				    #"Tipo Alterado com Localidade1" = Table.TransformColumnTypes(#"Tipo Alterado com Localidade", {{"ESG_Overall", type number}, {"ESG_Environmental", type number}, {"ESG_Social", type number}, {"ESG_Governance", type number}, {"CarbonEmissions", type number}, {"WaterUsage", type number}, {"EnergyConsumption", type number}}, "en-US"),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado com Localidade1", "Profit Margin (%)", each [ProfitMargin]/100, Percentage.Type),
+				    #"Personalização Adicionada1" = Table.AddColumn(#"Personalização Adicionada", "Growth Rate (%)", each [GrowthRate]/100, Percentage.Type),
+				    #"Colunas Removidas1" = Table.RemoveColumns(#"Personalização Adicionada1",{"ProfitMargin", "GrowthRate", "ESG_Overall", "ESG_Environmental", "ESG_Social", "ESG_Governance", "CarbonEmissions", "WaterUsage", "EnergyConsumption"}),
+				    #"Personalização Adicionada2" = Table.AddColumn(#"Colunas Removidas1", "Profit Margin (Mi $)", each Number.Round([Revenue]*[#"Profit Margin (%)"],2), Currency.Type),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Personalização Adicionada2",{{"Profit Margin (Mi $)", "Profit Margin (MM $)"}, {"Revenue", "Revenue (MM)"}, {"MarketCap", "MarketCap (MM)"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
