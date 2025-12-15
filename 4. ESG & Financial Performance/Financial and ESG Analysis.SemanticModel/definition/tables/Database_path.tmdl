@@ -1,0 +1,23 @@
+table Database_path
+	lineageTag: 58351b55-9ad1-4e65-b32d-d8f6f25dca09
+
+	column Database_path
+		dataType: string
+		lineageTag: b30c7ae0-e332-4753-9137-24a21aecb376
+		summarizeBy: none
+		sourceColumn: Database_path
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Database_path = m
+		mode: import
+		source =
+				let
+				    Fonte = "D:\Joao\GitHub\BI-Portifolio\4. ESG & Financial Performance\Database\company_esg_financial_dataset.csv"
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Text
+

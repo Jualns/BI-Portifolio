@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["DIM_Company","DIM_Region","_Calendar","FACT_Financial","FACT_ESG"]
+annotation PBI_QueryOrder = ["DIM_Company","DIM_Region","_Calendar","FACT_Financial","FACT_ESG","Database_path"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -19,6 +19,7 @@ ref table DIM_Region
 ref table _Calendar
 ref table FACT_Financial
 ref table FACT_ESG
+ref table Database_path
 
 ref cultureInfo pt-BR
 

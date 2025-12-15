@@ -91,7 +91,7 @@ table FACT_ESG
 		mode: import
 		source =
 				let
-				    Fonte = Csv.Document(File.Contents("D:\Joao\GitHub\BI-Portifolio\4. ESG & Financial Performance\company_esg_financial_dataset.csv"),[Delimiter=",", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Fonte = Csv.Document(File.Contents(Database_path),[Delimiter=",", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
 				    #"Valor Substituído1" = Table.ReplaceValue(#"Cabeçalhos Promovidos","","0",Replacer.ReplaceValue,{"GrowthRate"}),
 				    #"Colunas Removidas" = Table.RemoveColumns(#"Valor Substituído1",{"CompanyName", "Industry", "Region"}),

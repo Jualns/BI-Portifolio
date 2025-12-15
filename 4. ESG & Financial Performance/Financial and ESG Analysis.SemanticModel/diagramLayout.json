@@ -72,6 +72,19 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 863.85842242623892,
+            "y": 288.01116742491695
+          },
+          "nodeIndex": "Database_path",
+          "nodeLineageTag": "58351b55-9ad1-4e65-b32d-d8f6f25dca09",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Todas as tabelas",

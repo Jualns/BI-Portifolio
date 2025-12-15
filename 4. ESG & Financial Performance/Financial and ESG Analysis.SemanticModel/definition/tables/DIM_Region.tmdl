@@ -9,15 +9,33 @@ table DIM_Region
 
 		annotation SummarizationSetBy = Automatic
 
+	column Continent
+		dataType: string
+		lineageTag: 1a103315-45f4-44ba-91b6-ad8be8b79a18
+		summarizeBy: none
+		sourceColumn: Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	column Acronym
+		dataType: string
+		lineageTag: ce5af33f-75a1-40ff-ab2f-2929092e6971
+		summarizeBy: none
+		sourceColumn: Acronym
+
+		annotation SummarizationSetBy = Automatic
+
 	partition DIM_Region = m
 		mode: import
 		source =
 				let
 				    Fonte = DIM_Company,
 				    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"Region"}),
-				    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas")
+				    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+				    #"Coluna Condicional Adicionada" = Table.AddColumn(#"Duplicatas Removidas", "Continent", each if [Region] = "Latin America" then "South America" else if [Region] = "Middle East" then "Asia" else if [Region] = "Oceania" then "Australia" else [Region], type text),
+				    #"Coluna Condicional Adicionada1" = Table.AddColumn(#"Coluna Condicional Adicionada", "Acronym", each if [Region] = "Latin America" then "SA" else if [Region] = "Africa" then "AF" else if [Region] = "Oceania" then "OC" else if [Region] = "Europe" then "EU" else if [Region] = "North America" then "NA" else "AS", type text)
 				in
-				    #"Duplicatas Removidas"
+				    #"Coluna Condicional Adicionada1"
 
 	annotation PBI_NavigationStepName = Navegação
 

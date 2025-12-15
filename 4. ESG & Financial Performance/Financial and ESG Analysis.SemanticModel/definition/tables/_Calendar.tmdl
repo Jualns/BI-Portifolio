@@ -14,7 +14,7 @@ table _Calendar
 		mode: import
 		source =
 				let
-				    Fonte = Csv.Document(File.Contents("D:\Joao\GitHub\BI-Portifolio\4. ESG & Financial Performance\company_esg_financial_dataset.csv"),[Delimiter=",", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Fonte = Csv.Document(File.Contents(Database_path),[Delimiter=",", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"CompanyID", Int64.Type}, {"CompanyName", type text}, {"Industry", type text}, {"Region", type text}, {"Year", Int64.Type}, {"Revenue", Int64.Type}, {"ProfitMargin", Int64.Type}, {"MarketCap", Int64.Type}, {"GrowthRate", Int64.Type}, {"ESG_Overall", Int64.Type}, {"ESG_Environmental", Int64.Type}, {"ESG_Social", Int64.Type}, {"ESG_Governance", Int64.Type}, {"CarbonEmissions", Int64.Type}, {"WaterUsage", Int64.Type}, {"EnergyConsumption", Int64.Type}}),
 				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Tipo Alterado",{"Year"}),

@@ -1,5 +1,5 @@
 {
-  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.62\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "config": "{\"version\":\"5.62\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.62\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}",
   "layoutOptimization": 0,
   "resourcePackages": [
     {
@@ -21,13 +21,18 @@
         "disabled": false,
         "items": [
           {
-            "name": "Layout_Grey34157286362658745.svg",
-            "path": "Layout_Grey34157286362658745.svg",
+            "name": "Layout_White3661733219155543.svg",
+            "path": "Layout_White3661733219155543.svg",
             "type": 100
           },
           {
-            "name": "Layout_White8567405266778898.svg",
-            "path": "Layout_White8567405266778898.svg",
+            "name": "Layout_White535817765833945.svg",
+            "path": "Layout_White535817765833945.svg",
+            "type": 100
+          },
+          {
+            "name": "icons8-clear-filters-64-black698588691281492.png",
+            "path": "icons8-clear-filters-64-black698588691281492.png",
             "type": 100
           }
         ],
@@ -38,7 +43,7 @@
   ],
   "sections": [
     {
-      "config": "{\"objects\":{\"background\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"image\":{\"image\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'Layout_White.svg'\"}}},\"url\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"Layout_White8567405266778898.svg\"}}},\"scaling\":{\"expr\":{\"Literal\":{\"Value\":\"'Normal'\"}}}}}}}]}}",
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"image\":{\"image\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'Layout_White.svg'\"}}},\"url\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"Layout_White535817765833945.svg\"}}},\"scaling\":{\"expr\":{\"Literal\":{\"Value\":\"'Normal'\"}}}}}}}]}}",
       "displayName": "ESG",
       "displayOption": 1,
       "filters": "[]",
@@ -49,13 +54,59 @@
       "width": 1280.00
     },
     {
-      "config": "{\"objects\":{\"background\":[{\"properties\":{\"image\":{\"image\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'Layout_Grey.svg'\"}}},\"url\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"Layout_Grey34157286362658745.svg\"}}},\"scaling\":{\"expr\":{\"Literal\":{\"Value\":\"'Normal'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}",
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"image\":{\"image\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'Layout_White.svg'\"}}},\"url\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"Layout_White3661733219155543.svg\"}}},\"scaling\":{\"expr\":{\"Literal\":{\"Value\":\"'Normal'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}",
       "displayName": "Financial",
       "displayOption": 1,
       "filters": "[]",
       "height": 720.00,
       "name": "e00dc3ccd722d470bfa4",
-      "visualContainers": [],
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"048c6a83f59cba9a1df0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":336,\"y\":110,\"z\":6,\"width\":662,\"height\":378,\"tabOrder\":4}}],\"singleVisual\":{\"visualType\":\"filledMap\",\"projections\":{\"Category\":[{\"queryRef\":\"DIM_Region.Continent\",\"active\":true},{\"queryRef\":\"DIM_Region.Region\"}],\"Series\":[{\"queryRef\":\"FACT_Financial.Revenue (MM)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DIM_Region\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FACT_Financial\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Region\"},\"Name\":\"DIM_Region.Region\",\"NativeReferenceName\":\"Region\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Revenue (MM)\"},\"Name\":\"FACT_Financial.Revenue (MM)\",\"NativeReferenceName\":\"Revenue (MM)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Continent\"},\"Name\":\"DIM_Region.Continent\",\"NativeReferenceName\":\"Continent\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 378.00,
+          "width": 662.00,
+          "x": 336.00,
+          "y": 110.00,
+          "z": 6.00
+        },
+        {
+          "config": "{\"name\":\"1a2ce8c2842e19e64000\",\"layouts\":[{\"id\":0,\"position\":{\"x\":716,\"y\":488,\"z\":4,\"width\":564,\"height\":232,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"areaChart\",\"projections\":{\"Category\":[{\"queryRef\":\"_Calendar.Year\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(FACT_Financial.Revenue (MM))\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT_Financial\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Calendar\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Year\"},\"Name\":\"_Calendar.Year\",\"NativeReferenceName\":\"Year\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Revenue (MM)\"}},\"Function\":0},\"Name\":\"Sum(FACT_Financial.Revenue (MM))\",\"NativeReferenceName\":\"Revenue (MM)\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Revenue (MM)\"}},\"Function\":0}}}]},\"columnProperties\":{\"Sum(FACT_Financial.Revenue (MM))\":{\"displayName\":\"Revenue (MM)\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryAxis\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"valueAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Revenue (MM) per Year'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 232.00,
+          "width": 564.00,
+          "x": 716.00,
+          "y": 488.00,
+          "z": 4.00
+        },
+        {
+          "config": "{\"name\":\"2f818efd18fcf36942aa\",\"layouts\":[{\"id\":0,\"position\":{\"x\":25,\"y\":16.666666666666668,\"z\":3,\"width\":333.33333333333337,\"height\":46.66666666666667,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Financial Analysis\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontFamily\":\"Arial\",\"fontSize\":\"24pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 46.67,
+          "width": 333.33,
+          "x": 25.00,
+          "y": 16.67,
+          "z": 3.00
+        },
+        {
+          "config": "{\"name\":\"4c3092aa70928ef8d82e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":806.6666666666667,\"y\":16.666666666666668,\"z\":2,\"width\":45,\"height\":46.66666666666667}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"icon\":[{\"properties\":{\"shapeType\":{\"expr\":{\"Literal\":{\"Value\":\"'custom'\"}}},\"image\":{\"image\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'icons8-clear-filters-64-black.png'\"}}},\"url\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"icons8-clear-filters-64-black698588691281492.png\"}}},\"scaling\":{\"expr\":{\"Literal\":{\"Value\":\"'Fill'\"}}}}},\"horizontalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"leftMargin\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"topMargin\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"bottomMargin\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"rightMargin\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}},\"selector\":{\"id\":\"default\"}}],\"fill\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"lockAspect\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 46.67,
+          "width": 45.00,
+          "x": 806.67,
+          "y": 16.67,
+          "z": 2.00
+        },
+        {
+          "config": "{\"name\":\"af8c90fd5b1fc5a354a3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":26,\"y\":110,\"z\":5,\"width\":300,\"height\":306,\"tabOrder\":3}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"Sum(FACT_Financial.Revenue (MM))\"},{\"queryRef\":\"Sum(FACT_Financial.Profit Margin (MM $))\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FACT_Financial\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Revenue (MM)\"}},\"Function\":0},\"Name\":\"Sum(FACT_Financial.Revenue (MM))\",\"NativeReferenceName\":\"Revenue (MM)\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Profit Margin (MM $)\"}},\"Function\":0},\"Name\":\"Sum(FACT_Financial.Profit Margin (MM $))\",\"NativeReferenceName\":\"Soma de Profit Margin (MM $)\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Revenue (MM)\"}},\"Function\":0}}}]},\"columnProperties\":{\"Sum(FACT_Financial.Revenue (MM))\":{\"displayName\":\"Revenue (MM)\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"outline\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}},\"selector\":{\"id\":\"default\"}}],\"fillCustom\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}},{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"90D\"}}}},\"selector\":{\"id\":\"default\"}}],\"value\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"25D\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"horizontalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"textWrap\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}},\"selector\":{\"id\":\"default\"}}],\"label\":[{\"properties\":{\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'belowValue'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}},\"selector\":{\"id\":\"default\"}}],\"layout\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 306.00,
+          "width": 300.00,
+          "x": 26.00,
+          "y": 110.00,
+          "z": 5.00
+        }
+      ],
       "width": 1280.00
     }
   ]
